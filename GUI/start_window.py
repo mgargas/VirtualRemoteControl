@@ -1,15 +1,14 @@
 from GUI.start_widget import StartWidget
-from GUI.rooms_widget import RoomsWidget
+from GUI.main_page_widget import MainPageWidget
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon
-import sys
-import os
 
 
 class StartWindow(QMainWindow):
 
-    def __init__(self, parent=None):
+    def __init__(self, rooms, parent=None):
         super(StartWindow, self).__init__(parent)
+        self.rooms = rooms
         self.initUI()
 
     def initUI(self):
@@ -17,10 +16,7 @@ class StartWindow(QMainWindow):
         self.setWindowTitle('Virtual Remote Control')
         self.setWindowIcon(QIcon('remote_control.png'))
         self.center()
-        start_widget = StartWidget(self)
-        layout = QVBoxLayout()
-        layout.addWidget(start_widget)
-        self.setCentralWidget(start_widget)
+        self.set_start_widget()
         self.show()
 
     def center(self):
@@ -29,12 +25,9 @@ class StartWindow(QMainWindow):
         qr.moveCenter(cp)
         self.move(qr.topLeft())
 
+    def set_start_widget(self):
+        self.start_widget = StartWidget(self, rooms=self.rooms)
+        layout = QVBoxLayout()
+        layout.addWidget(self.start_widget)
+        self.setCentralWidget(self.start_widget)
 
-def main():
-    app = QApplication(sys.argv)
-    win = StartWindow()
-    sys.exit(app.exec_())
-
-
-if __name__ == "__main__":
-    main()
