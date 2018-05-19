@@ -1,6 +1,4 @@
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
 
 
 class ItemWidget(QWidget):
@@ -15,24 +13,28 @@ class ItemWidget(QWidget):
         self.rb_layout = QGridLayout()
         self.off_button = QRadioButton("OFF")
         self.off_button.setChecked(True)
-        self.off_button.clicked.connect(self.on_click)
+        self.off_button.clicked.connect(self.switch_off)
         self.rb_layout.addWidget(self.off_button, 0, 0)
 
         self.on_button = QRadioButton("ON")
-        self.on_button.clicked.connect(self.on_click)
+        self.on_button.clicked.connect(self.switch_on)
         self.rb_layout.addWidget(self.on_button, 0, 1)
 
-    def on_click(self):
-        if self.on_button.isChecked():
-            self.item.state = True
-            self.item.send_to_socket()
-        else:
-            self.item.state = False
-            self.item.send_to_socket()
-
     def __init_layout(self):
-        hbox = QHBoxLayout()
-        hbox.addWidget(self.item_label)
-        hbox.addLayout(self.rb_layout)
-        self.setLayout(hbox)
+        self.layout = QHBoxLayout()
+        self.layout.addWidget(self.item_label)
+        self.layout.addLayout(self.rb_layout)
+        self.setLayout(self.layout)
+
+    def switch_on(self):
+        self.on_button.setChecked(True)
+        self.item.state = True
+        self.item.send_to_socket()
+
+    def switch_off(self):
+        self.off_button.setChecked(True)
+        self.item.state = False
+        self.item.send_to_socket()
+
+
 
