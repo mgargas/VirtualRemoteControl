@@ -13,7 +13,7 @@ class StartWindow(QMainWindow):
     def initUI(self):
         self.resize(500, 600)
         self.setWindowTitle('Virtual Remote Control')
-        self.setWindowIcon(QIcon('remote_control_icon.png'))
+        self.setWindowIcon(QIcon('Resources/remote_control_icon.png'))
         self.__center()
         self.__set_start_widget()
         self.__init_menu_bar()

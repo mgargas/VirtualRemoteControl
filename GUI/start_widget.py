@@ -25,7 +25,7 @@ class StartWidget(QWidget):
 
     def __init_picture_label(self):
         self.picture_label = QLabel(self)
-        self.pix_map = QPixmap("remote_control.png")
+        self.pix_map = QPixmap("Resources/remote_control.png")
         self.picture_label.setPixmap(self.pix_map)
 
     def __init_start_button(self):

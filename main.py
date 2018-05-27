@@ -1,10 +1,9 @@
 import yaml
 import os
-from room import Room
-from item import Item
+from Model.room import Room
+from Model.item import Item
 from GUI.start_window import StartWindow
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon
 import sys
 
 
