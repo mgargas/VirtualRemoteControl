@@ -51,6 +51,7 @@ class StartWindow(QMainWindow):
         exit_action.triggered.connect(qApp.quit)
         self.menu_bar.addAction(exit_action)
 
+
     def closeEvent(self, event):
         quit_msg = "Are you sure you want to exit the remote control?"
         reply = QMessageBox.question(self, 'Message',
